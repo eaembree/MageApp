@@ -10,9 +10,13 @@ import BotchTensButtons from './BotchTensButtons';
 import HomeScreen from './screens/Home';
 import BtnTestScreen from './screens/BtnTest';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-const Stack = createStackNavigator();
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+//const Stack = createStackNavigator();
+
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
 
 function App() {
   const body = "Hello World";
@@ -24,15 +28,24 @@ function App() {
     //     <Text>{body}</Text>
 
     //   </View>
+
+
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen
+    //       name="Home"
+    //       component={HomeScreen}
+    //       options={{title: 'Welcome'}}
+    //     />
+    //     <Stack.Screen name="BtnTest" component={BtnTestScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'Welcome'}}
-        />
-        <Stack.Screen name="BtnTest" component={BtnTestScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
