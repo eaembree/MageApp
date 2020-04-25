@@ -1,27 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MageButton from './MageButton';
+import MageButtonSample from './MageButtonSample';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCoffee, faDiceD20, faQuestionCircle, faCog, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+import BotchTensButtons from './BotchTensButtons';
 
 function App() {
+  const body = "Hello World";
   return (
-      <MageButton></MageButton>
+      // <FontAwesomeIcon icon={ faCheck } />
+      // <MageButtonSample buttonText="Hello World"/>
+      <View style={{alignSelf: 'baseline'}}>
+        <BotchTensButtons btnHeight={40}/>
+        <Text>{body}</Text>
+  
+      </View>
   );
 }
 
