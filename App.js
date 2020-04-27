@@ -15,8 +15,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 //const Stack = createStackNavigator();
 
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-const Tab = createBottomTabNavigator();
+//import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//const Tab = createBottomTabNavigator();
+
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Tab = createMaterialTopTabNavigator();
+
+function tabBarIcon({ focused, color, size }) {
+  let iconName;
+
+  if (route.name === 'Home') {
+    iconName = focused
+      ? faCoffee
+      : faDiceD20
+  } else if (route.name === 'BtnTest') {
+    iconName = focused ? faCog : faCheck;
+  }
+
+  // You can return any component that you like here!
+  return <FontAwesomeIcon icon={iconName} />;
+}
 
 function App() {
   const body = "Hello World";
@@ -41,12 +60,36 @@ function App() {
     //   </Stack.Navigator>
     // </NavigationContainer>
 
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="BtnTest" component={BtnTestScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Tab.Navigator
+    //   screenOptions={({ route }) => ({
+    //     tabBarIcon: ({ focused, color, size }) => {
+    //       let iconName;
+
+    //       if (route.name === 'Home') {
+    //         iconName = focused
+    //           ? faCoffee
+    //           : faDiceD20
+    //       } else if (route.name === 'BtnTest') {
+    //         iconName = focused ? faCog : faCheck;
+    //       }
+
+    //       // You can return any component that you like here!
+    //       return <FontAwesomeIcon icon={ iconName } />;
+    //     }
+    //   })}
+    //   >
+    //     <Tab.Screen name="Home" component={HomeScreen} />
+    //     <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
+
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
   );
 }
 
