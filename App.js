@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
 import MageButtonSample from './MageButtonSample';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCoffee, faDiceD20, faQuestionCircle, faCog, faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -36,6 +36,14 @@ function tabBarIcon({ focused, color, size }) {
   // You can return any component that you like here!
   return <FontAwesomeIcon icon={iconName} />;
 }
+
+const statusBarPadding = Platform.OS === 'android' ? StatusBar.currentHeight : 0;
+
+const styles = StyleSheet.create({
+  baseComponent: {
+    paddingTop: statusBarPadding
+  }
+});
 
 function App() {
   const body = "Hello World";
@@ -84,7 +92,16 @@ function App() {
     //   </Tab.Navigator>
     // </NavigationContainer>
 
-        <NavigationContainer>
+    //// With Status bar hidden
+    // <NavigationContainer>
+    //   <StatusBar hidden/>
+    //   <Tab.Navigator>
+    //     <Tab.Screen name="Home" component={HomeScreen} />
+    //     <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
+
+        <NavigationContainer styles={styles.baseComponent}>
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="BtnTest" component={BtnTestScreen} />
