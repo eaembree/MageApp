@@ -9,6 +9,8 @@ import BotchTensButtons from './BotchTensButtons';
 
 import HomeScreen from './screens/Home';
 import BtnTestScreen from './screens/BtnTest';
+import ModalTestScreen from './screens/ModalTest';
+import CondTestScreen from './screens/CondTest';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -105,6 +107,8 @@ function App() {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+            <Tab.Screen name="ModalTest" component={ModalTestScreen} />
+            <Tab.Screen name="CondTest" component={CondTestScreen} />
           </Tab.Navigator>
         </NavigationContainer>
   );

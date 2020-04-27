@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
 });
 
 class BotchTensButtons extends Component {
-
     render() {
         return (
             <View style={[styles.container, { alignSelf: 'baseline' }]}>
