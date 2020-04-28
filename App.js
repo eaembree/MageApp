@@ -11,6 +11,7 @@ import HomeScreen from './screens/Home';
 import BtnTestScreen from './screens/BtnTest';
 import ModalTestScreen from './screens/ModalTest';
 import CondTestScreen from './screens/CondTest';
+import ToggleButtonsScreen from './screens/ToggleButtons';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -105,6 +106,7 @@ function App() {
 
         <NavigationContainer styles={styles.baseComponent}>
           <Tab.Navigator>
+            <Tab.Screen name="Toggle" component={ToggleButtonsScreen} />
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="BtnTest" component={BtnTestScreen} />
             <Tab.Screen name="ModalTest" component={ModalTestScreen} />

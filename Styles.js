@@ -21,6 +21,26 @@ export const MageButtonStyle = StyleSheet.create({
     }
 });
 
+export const MageButtonOutlineStyle = StyleSheet.create({
+    textColor: {
+        color: '#a32fa3'
+    },
+    btn: {
+        padding: 10,
+        margin: 10,
+        backgroundColor: 'transparent',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#a32fa3',
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    btnText: {
+        textAlign: 'center',
+        fontWeight: 'bold'
+    }
+});
+
 export const MageButtonInvStyle = StyleSheet.create({
     textColor: {
         color: '#a32fa3',
