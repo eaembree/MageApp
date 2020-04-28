@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
 function Single() {
     return (
         <View>
-            <Text>{"Single"}</Text>
             <DTButtons />
+            <Text>{"Single"}</Text>
         </View>
     );
 }
@@ -46,8 +46,8 @@ function Single() {
 function Multi() {
     return (
         <View>
-            <Text>{"Multi"}</Text>
             <DTButtons />
+            <Text>{"Multi"}</Text>
         </View>
     );
 }
@@ -88,7 +88,7 @@ function DTButtons() {
     ];
     const flexCenter = { flex: 1, justifyContent: 'center', alignItems: 'center' }
     return (
-        <View style={[styles.container, { marginTop: 25, marginBottom: 20 }]}>
+        <View style={[styles.container, { marginTop: 25, marginBottom: 40 }]}>
             <View style={greyCardBody}>
                 <View styles={{ flex: 1 }}>
                     <View style={flexCenter}>
@@ -137,6 +137,45 @@ function DTButtons() {
                     </View>
                 </View>
             </View>
+        </View>
+    )
+}
+
+function SingleOrExtended({ type, setSingle, setMulti }) {
+
+    let leftBtnStyle, leftTextStyle, leftTextColor;
+    let rightBtnStyle, rightTextStyle, rightTextColor;
+    if (type == 'single') {
+        leftBtnStyle = btn.btn;
+        leftTextStyle = btn.btnText;
+        leftTextColor = btn.textColor;
+        rightBtnStyle = btnOut.btn;
+        rightTextStyle = btnOut.btnText;
+        rightTextColor = btnOut.textColor;
+    }
+    else {
+        leftBtnStyle = btnOut.btn;
+        leftTextStyle = btnOut.btnText;
+        leftTextColor = btnOut.textColor;
+        rightBtnStyle = btn.btn;
+        rightTextStyle = btn.btnText;
+        rightTextColor = btn.textColor;
+    }
+
+    return (
+        <View style={[styles.container, { marginTop: 25, marginBottom: 20 }]}>
+            <TouchableOpacity
+                style={[leftBtnStyle, styles.leftButton]}
+                onPress={() => setSingle()}
+            >
+                <Text style={[leftTextStyle, leftTextColor]}>Single Action</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={[rightBtnStyle, styles.rightButton]}
+                onPress={() => setMulti()}
+            >
+                <Text style={[rightTextStyle, rightTextColor]}>Extended Action</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -200,21 +239,12 @@ class ToggleButtonsScreen extends Component {
     render() {
         return (
             <View>
-                <View style={[styles.container, { marginTop: 25, marginBottom: 20 }]}>
-                    <TouchableOpacity
-                        style={[this.state.leftBtnStyle, styles.leftButton]}
-                        onPress={this.setSingle}
-                    >
-                        <Text style={[this.state.leftTextStyle, this.state.leftTextColor]}>Single Action</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[this.state.rightBtnStyle, styles.rightButton]}
-                        onPress={this.setMulti}
-                    >
-                        <Text style={[this.state.rightTextStyle, this.state.rightTextColor]}>Extended Action</Text>
-                    </TouchableOpacity>
+                <View>
+                    <SingleOrExtended type={this.state.type}
+                        setSingle={this.setSingle} setMulti={this.setMulti}
+                    />
                 </View>
-                <View style={styles.typeContainer}>
+                <View style={[styles.typeContainer, {marginTop: 5}]}>
                     <Chooser rollType={this.state.type} />
                 </View>
             </View>
