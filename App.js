@@ -7,10 +7,8 @@ import { faCoffee, faDiceD20, faQuestionCircle, faCog, faCheck } from '@fortawes
 
 import BotchTensButtons from './BotchTensButtons';
 
-import HomeScreen from './screens/Home';
 import BtnTestScreen from './screens/BtnTest';
 import ModalTestScreen from './screens/ModalTest';
-import CondTestScreen from './screens/CondTest';
 import ToggleButtonsScreen from './screens/ToggleButtons';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -48,8 +46,36 @@ const styles = StyleSheet.create({
   }
 });
 
+const TensOptions = {
+  Regular: 'regular',
+  Double: 'double',
+  Reroll: 'reroll'
+}
+
+const BotchOptions = {
+  None: 'none',
+  Original: 'original',
+  RevisedM20: 'rev-m20'
+}
+
+const SettingsContext = React.createContext({
+  tensOption: TensOptions.Regular,
+  botchOptions: BotchOptions.Original,
+  showBotchTensButtons: true,
+  allowBotchFixWithWillpower: true,
+  allowFailureFixWithWillpower: true
+});
+
+const initialSettingsState = {
+  tensOption: TensOptions.Regular,
+  botchOptions: BotchOptions.Original,
+  showBotchTensButtons: true,
+  allowBotchFixWithWillpower: true,
+  allowFailureFixWithWillpower: true
+}
+
 function App() {
-  const body = "Hello World";
+  //const body = "Hello World";
   return (
     // <FontAwesomeIcon icon={ faCheck } />
     // <MageButtonSample buttonText="Hello World"/>
@@ -104,15 +130,15 @@ function App() {
     //   </Tab.Navigator>
     // </NavigationContainer>
 
-        <NavigationContainer styles={styles.baseComponent}>
-          <Tab.Navigator>
-            <Tab.Screen name="Toggle" component={ToggleButtonsScreen} />
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="BtnTest" component={BtnTestScreen} />
-            <Tab.Screen name="ModalTest" component={ModalTestScreen} />
-            <Tab.Screen name="CondTest" component={CondTestScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+    <SettingsContext.Provider value={{initialSettingsState}}>
+      <NavigationContainer styles={styles.baseComponent}>
+      <Tab.Navigator>
+        <Tab.Screen name="Main" component={ToggleButtonsScreen} />
+        <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+        <Tab.Screen name="ModalTest" component={ModalTestScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+    </SettingsContext.Provider>
   );
 }
 
