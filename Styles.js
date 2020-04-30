@@ -9,7 +9,7 @@ export const MageButtonStyle = StyleSheet.create({
         padding: 10,
         margin: 10,
         backgroundColor: '#a32fa3',
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 1,
         borderColor: '#a32fa3',
         flexDirection: 'row',
