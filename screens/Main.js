@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { SingleOrExtended } from '../components/SingleOrExtended';
 import { Chooser } from '../components/Chooser';
 
-export function ToggleButtonsScreen() {
+export function MainScreen() {
 
     const [mode, setMode] = React.useState('single');
 
@@ -29,4 +29,4 @@ export function ToggleButtonsScreen() {
     );
 }
 
-export default ToggleButtonsScreen;
+export default MainScreen;

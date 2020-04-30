@@ -9,11 +9,14 @@ import BotchTensButtons from './BotchTensButtons';
 
 import BtnTestScreen from './screens/BtnTest';
 import ModalTestScreen from './screens/ModalTest';
-import ToggleButtonsScreen from './screens/ToggleButtons';
+import MainScreen from './screens/Main';
+import SettingsScreen from './screens/Settings'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 //const Stack = createStackNavigator();
+
+import { SettingsContext, TensOptions, BotchOptions } from './SettingsData';
 
 
 //import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -46,35 +49,25 @@ const styles = StyleSheet.create({
   }
 });
 
-const TensOptions = {
-  Regular: 'regular',
-  Double: 'double',
-  Reroll: 'reroll'
-}
-
-const BotchOptions = {
-  None: 'none',
-  Original: 'original',
-  RevisedM20: 'rev-m20'
-}
-
-const SettingsContext = React.createContext({
-  tensOption: TensOptions.Regular,
-  botchOptions: BotchOptions.Original,
-  showBotchTensButtons: true,
-  allowBotchFixWithWillpower: true,
-  allowFailureFixWithWillpower: true
-});
-
-const initialSettingsState = {
-  tensOption: TensOptions.Regular,
-  botchOptions: BotchOptions.Original,
-  showBotchTensButtons: true,
-  allowBotchFixWithWillpower: true,
-  allowFailureFixWithWillpower: true
-}
 
 function App() {
+  const [tensOption, setTensOption] = React.useState(TensOptions.Regular);
+  const [showBotchTensButtons, setShowBotchTensButtons] = React.useState(true);
+  const [allowBotchFixWithWillpower, setAllowBotchFixWithWillpower] = React.useState(true);
+  const [allowFailureFixWithWillpower, setAsetAllowFailureFixWithWillpowerllowBotchFixWithWillpower] = React.useState(true);
+
+  const initialSettingsState = {
+    tensOption: tensOption,
+    botchOption: BotchOptions.Original,
+    showBotchTensButtons: showBotchTensButtons,
+    allowBotchFixWithWillpower: allowBotchFixWithWillpower,
+    allowFailureFixWithWillpower: allowFailureFixWithWillpower,
+
+    toggleShowBotchTensButtons: () => {setShowBotchTensButtons(!showBotchTensButtons)},
+    toggleAllowBotchFixWithWillpower: () => {setAllowBotchFixWithWillpower(!allowBotchFixWithWillpower)},
+    toggleAllowFailureFixWithWillpower: () => {setAsetAllowFailureFixWithWillpowerllowBotchFixWithWillpower(!allowFailureFixWithWillpower)}
+  }
+
   //const body = "Hello World";
   return (
     // <FontAwesomeIcon icon={ faCheck } />
@@ -130,14 +123,15 @@ function App() {
     //   </Tab.Navigator>
     // </NavigationContainer>
 
-    <SettingsContext.Provider value={{initialSettingsState}}>
+    <SettingsContext.Provider value={initialSettingsState}>
       <NavigationContainer styles={styles.baseComponent}>
-      <Tab.Navigator>
-        <Tab.Screen name="Main" component={ToggleButtonsScreen} />
-        <Tab.Screen name="BtnTest" component={BtnTestScreen} />
-        <Tab.Screen name="ModalTest" component={ModalTestScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Main" component={MainScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+          <Tab.Screen name="BtnTest" component={BtnTestScreen} />
+          <Tab.Screen name="ModalTest" component={ModalTestScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </SettingsContext.Provider>
   );
 }
