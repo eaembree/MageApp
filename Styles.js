@@ -7,7 +7,6 @@ export const MageButtonStyle = StyleSheet.create({
     },
     btn: {
         padding: 10,
-        margin: 10,
         backgroundColor: '#a32fa3',
         borderRadius: 5,
         borderWidth: 1,
@@ -27,9 +26,8 @@ export const MageButtonOutlineStyle = StyleSheet.create({
     },
     btn: {
         padding: 10,
-        margin: 10,
         backgroundColor: 'transparent',
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 1,
         borderColor: '#a32fa3',
         flexDirection: 'row',
@@ -47,9 +45,8 @@ export const MageButtonInvStyle = StyleSheet.create({
     },
     btn: {
         padding: 10,
-        margin: 10,
         backgroundColor: '#ffc300',
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 1,
         borderColor: '#a32fa3',
         flexDirection: 'row',

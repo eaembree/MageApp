@@ -12,6 +12,32 @@ export const BotchOptions = {
   RevisedM20: 'rev-m20'
 }
 
+export function getBotchText(type){
+  switch(type) {
+      case BotchOptions.Original:
+          return "Original";
+      case BotchOptions.RevisedM20:
+          return "Revised/M20";
+      case BotchOptions.None:
+          return "None";
+      default:
+          return "ERROR!";
+  }
+}
+
+export function getTensText(type){
+  switch(type) {
+      case TensOptions.Regular:
+          return "Regular 10s";
+      case TensOptions.Reroll:
+          return "Reroll 10s";
+      case TensOptions.Double:
+          return "10s Double";
+      default:
+          return "ERROR!";
+  }
+}
+
 export const SettingsContext = React.createContext({
   tensOption: TensOptions.Regular,
   botchOption: BotchOptions.Original,
@@ -21,7 +47,7 @@ export const SettingsContext = React.createContext({
 
   setTensOption: () => {},
   setBotchOption: () => {},
-  toggleShowBotchTensButtons: () => {},
-  toggleAllowBotchFixWithWillpower: () => {},
-  toggleAllowFailureFixWithWillpower: () => {},
+  setShowBotchTensButtons: () => {},
+  setAllowBotchFixWithWillpower: () => {},
+  setAllowFailureFixWithWillpower: () => {},
 });

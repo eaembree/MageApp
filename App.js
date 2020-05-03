@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform, YellowBox } from 'react-native';
 import MageButtonSample from './MageButtonSample';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCoffee, faDiceD20, faQuestionCircle, faCog, faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -17,6 +17,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 //const Stack = createStackNavigator();
 
 import { SettingsContext, TensOptions, BotchOptions } from './SettingsData';
+
+YellowBox.ignoreWarnings([
+  // 2020-05-01: There is a 'bug' causing this list issue to pop up a lot.
+  //   Remove in the future
+  'VirtualizedLists should never be nested'
+])
 
 
 //import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -52,20 +58,23 @@ const styles = StyleSheet.create({
 
 function App() {
   const [tensOption, setTensOption] = React.useState(TensOptions.Regular);
+  const [botchOption, setBotchOption] = React.useState(BotchOptions.RevisedM20);
   const [showBotchTensButtons, setShowBotchTensButtons] = React.useState(true);
   const [allowBotchFixWithWillpower, setAllowBotchFixWithWillpower] = React.useState(true);
-  const [allowFailureFixWithWillpower, setAsetAllowFailureFixWithWillpowerllowBotchFixWithWillpower] = React.useState(true);
+  const [allowFailureFixWithWillpower, setAllowFailureFixWithWillpower] = React.useState(true);
 
   const initialSettingsState = {
     tensOption: tensOption,
-    botchOption: BotchOptions.Original,
+    botchOption: botchOption,
     showBotchTensButtons: showBotchTensButtons,
     allowBotchFixWithWillpower: allowBotchFixWithWillpower,
     allowFailureFixWithWillpower: allowFailureFixWithWillpower,
 
-    toggleShowBotchTensButtons: () => {setShowBotchTensButtons(!showBotchTensButtons)},
-    toggleAllowBotchFixWithWillpower: () => {setAllowBotchFixWithWillpower(!allowBotchFixWithWillpower)},
-    toggleAllowFailureFixWithWillpower: () => {setAsetAllowFailureFixWithWillpowerllowBotchFixWithWillpower(!allowFailureFixWithWillpower)}
+    setTensOption: (newVal) => { setTensOption(newVal) },
+    setBotchOption: (newVal) => { setBotchOption(newVal) },
+    setShowBotchTensButtons: (newVal) => { setShowBotchTensButtons(newVal) },
+    setAllowBotchFixWithWillpower: (newVal) => { setAllowBotchFixWithWillpower(newVal) },
+    setAllowFailureFixWithWillpower: (newVal) => { setAllowFailureFixWithWillpower(newVal) }
   }
 
   //const body = "Hello World";
