@@ -4,19 +4,21 @@ import {
     MageButtonStyle as btn,
     MageButtonOutlineStyle as btnOut,
     MageButtonInvStyle as btnInv
-} from '../Styles'
-import { SettingsContext, BotchOptions, getBotchText } from '../SettingsData'
-import { OptionButton } from './SettingsOptionButton';
+} from '../../Styles'
+import { SettingsContext, TensOptions, getTensText } from '../../SettingsData'
+import { OptionButton } from './OptionButton';
 
-export function BotchOption() {
+export function TensOption() {
     const styles = StyleSheet.create({
         container: {
+            flex: 1
         },
         btnContainer: {
+            flex: 1,
             marginBottom: 20
         },
         header: {
-            textAlign: 'center', fontSize: 20,
+            textAlign: 'center', fontSize: 20
         },
         firstBtn: { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 },
         middleBtn: {
@@ -46,15 +48,15 @@ export function BotchOption() {
     ];
 
     const {
-        botchOption, setBotchOption
+        tensOption, setTensOption
     } = React.useContext(SettingsContext);
 
     const btnData = [
         {
-            id: 'botch-' + BotchOptions.Original,
-            isSelected: botchOption == BotchOptions.Original,
-            setFunc: () => { setBotchOption(BotchOptions.Original) },
-            text: getBotchText(BotchOptions.Original),
+            id: 'tens-' + TensOptions.Regular,
+            isSelected: tensOption == TensOptions.Regular,
+            setFunc: () => { setTensOption(TensOptions.Regular) },
+            text: getTensText(TensOptions.Regular),
             btnStyle: [...btnArr, styles.firstBtn],
             btnUnselectedStyle: [btnOut.btn],
             btnSelectedStyle: [btn.btn],
@@ -62,10 +64,10 @@ export function BotchOption() {
             textSelectedStyle: [...textSelectedArr]
         },
         {
-            id: 'botch-' + BotchOptions.RevisedM20,
-            isSelected: botchOption == BotchOptions.RevisedM20,
-            setFunc: () => { setBotchOption(BotchOptions.RevisedM20) },
-            text: getBotchText(BotchOptions.RevisedM20),
+            id: 'tens-' + TensOptions.Reroll,
+            isSelected: tensOption == TensOptions.Reroll,
+            setFunc: () => { setTensOption(TensOptions.Reroll) },
+            text: getTensText(TensOptions.Reroll),
             btnStyle: [...btnArr, styles.middleBtn],
             btnUnselectedStyle: [btnOut.btn],
             btnSelectedStyle: [btn.btn],
@@ -73,10 +75,10 @@ export function BotchOption() {
             textSelectedStyle: [...textSelectedArr]
         },
         {
-            id: 'botch-' + BotchOptions.None,
-            isSelected: botchOption == BotchOptions.None,
-            setFunc: () => { setBotchOption(BotchOptions.None) },
-            text: getBotchText(BotchOptions.None),
+            id: 'tens-' + TensOptions.Double,
+            isSelected: tensOption == TensOptions.Double,
+            setFunc: () => { setTensOption(TensOptions.Double) },
+            text: getTensText(TensOptions.Double),
             btnStyle: [...btnArr, styles.lastBtn],
             btnUnselectedStyle: [btnOut.btn],
             btnSelectedStyle: [btn.btn],
@@ -87,7 +89,7 @@ export function BotchOption() {
 
     return (
         <View styles={styles.container}>
-            <Text style={styles.header}>{"Botch Type"}</Text>
+            <Text style={styles.header}>{"10s Type"}</Text>
             <FlatList
                 data={btnData}
                 renderItem={

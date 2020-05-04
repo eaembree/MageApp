@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 import { SettingsContext } from '../SettingsData'
 
-import { YesNoOption } from '../components/SettingsYesNoOption';
-import { BotchOption } from '../components/SettingsBotchOption';
-import { TensOption } from '../components/SettingsTensOption';
+import { YesNoOption } from './settings_components/YesNoOption';
+import { BotchOption } from './settings_components/BotchOption';
+import { TensOption } from './settings_components/TensOption';
 
 const styles = StyleSheet.create({
     screenContainer: {

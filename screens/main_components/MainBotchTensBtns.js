@@ -7,15 +7,15 @@ import {
     MageButtonStyle as btn,
     MageButtonOutlineStyle as btnOut,
     MageButtonInvStyle as btnInv
-} from '../Styles'
+} from '../../Styles'
 
 import {
     SettingsContext, TensOptions, BotchOptions,
     getBotchText, getTensText
-} from '../SettingsData';
+} from '../../SettingsData';
 
-import { BotchOption } from './SettingsBotchOption'
-import { TensOption } from './SettingsTensOption'
+import { BotchOption } from '../settings_components/BotchOption'
+import { TensOption } from '../settings_components/TensOption'
 
 export function BotchTensBtns({ showBotchTensButtons }) {
     let result = <View />

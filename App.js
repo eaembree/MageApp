@@ -137,8 +137,6 @@ function App() {
         <Tab.Navigator>
           <Tab.Screen name="Main" component={MainScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
-          <Tab.Screen name="BtnTest" component={BtnTestScreen} />
-          <Tab.Screen name="ModalTest" component={ModalTestScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </SettingsContext.Provider>

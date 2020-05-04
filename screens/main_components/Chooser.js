@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import { Single } from '../components/Single';
-import { Multi } from '../components/Multi';
+import { Single } from './Single';
+import { Multi } from './Multi';
 
 export function Chooser({ rollType }) {
     let output;

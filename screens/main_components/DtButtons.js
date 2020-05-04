@@ -5,7 +5,7 @@ import {
     MageButtonStyle as btn,
     MageButtonOutlineStyle as btnOut,
     MageButtonInvStyle as btnInv
-} from '../Styles'
+} from '../../Styles'
 
 const styles = StyleSheet.create({
     container: {

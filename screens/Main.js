@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import { SingleOrExtended } from '../components/SingleOrExtended';
-import { Chooser } from '../components/Chooser';
-import { BotchTensBtns } from '../components/MainBotchTensBtns'
+import { SingleOrExtended } from './main_components/SingleOrExtended';
+import { Chooser } from './main_components/Chooser';
+import { BotchTensBtns } from './main_components/MainBotchTensBtns'
 
 import { SettingsContext } from '../SettingsData'
 

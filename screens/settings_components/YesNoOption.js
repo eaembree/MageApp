@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native
 import {
     MageButtonStyle as btn,
     MageButtonOutlineStyle as btnOut
-} from '../Styles'
+} from '../../Styles'
 
 export function YesNoOption({ title, yesTrue, yesClicked, noClicked }) {
 
