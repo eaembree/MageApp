@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export function SingleOrExtended({ type, setSingle, setMulti }) {
+export function SingleOrExtended({ type, setSingle, setExtended }) {
 
     const singleCallback = setSingle;
-    const multiCallback = setMulti;
+    const extendedCallback = setExtended;
 
     let leftBtnStyle, leftTextStyle, leftTextColor;
     let rightBtnStyle, rightTextStyle, rightTextColor;
@@ -68,7 +68,7 @@ export function SingleOrExtended({ type, setSingle, setMulti }) {
             </TouchableOpacity>
             <TouchableOpacity
                 style={[rightBtnStyle, styles.rightButton]}
-                onPress={multiCallback}
+                onPress={extendedCallback}
             >
                 <Text style={[rightTextStyle, rightTextColor]}>Extended Action</Text>
             </TouchableOpacity>

@@ -1,20 +1,19 @@
-import React from 'react';
-import { View } from 'react-native';
-import { DTButtons } from './single_components/DtButtons';
-import { NumDiceButtons } from './NumDiceButtons';
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+import { DTButtons } from './extended_components/DtButtons';
 import { clamp } from '../../utils/Math';
 
-export function Single() {
+export function Extended() {
     const MIN_DIFFICULTY = 2, MAX_DIFFICULTY = 10;
-    const MIN_THRESHOLD = 0, MAX_THRESHOLD = 6;
+    const MIN_NUM_ROLLS = 2, MAX_NUM_ROLLS = 1000;
     const MIN_NUM_DICE = 1, MAX_NUM_DICE = 1000;
 
     const DIFFICULTY_START = 5;
-    const THRESHOLD_START = 5;
+    const NUM_ROLLS_START = 2;
     const NUM_DICE_START = 3
 
     let [difficulty, setDifficulty] = React.useState(DIFFICULTY_START);
-    let [threshold, setThreshold] = React.useState(THRESHOLD_START);
+    let [numRolls, setNumRolls] = React.useState(NUM_ROLLS_START);
     let [numDice, setNumDice] = React.useState(NUM_DICE_START);
 
     const modifyDifficulty = (change) => {
@@ -24,11 +23,11 @@ export function Single() {
         setDifficulty(newVal);
     }
 
-    const modifyThreshold = (change) => {
+    const modifyNumRolls = (change) => {
         if (change == 0) return;
-        let newVal = clamp(threshold + change, MIN_THRESHOLD, MAX_THRESHOLD);
-        if (newVal == threshold) return;
-        setThreshold(newVal);
+        let newVal = clamp(numRolls + change, MIN_NUM_ROLLS, MAX_NUM_ROLLS);
+        if (newVal == numRolls) return;
+        setNumRolls(newVal);
     }
 
     const modifyNumDice = (change) => {
@@ -43,14 +42,12 @@ export function Single() {
             <View style={{ marginTop: 5 }}>
                 <DTButtons
                     difficulty={difficulty}
-                    threshold={threshold}
+                    numRolls={numRolls}
                     modifyDifficulty={modifyDifficulty}
-                    modifyThreshold={modifyThreshold} />
-            </View>
-            <View style={{ marginTop: 5 }}>
-                <NumDiceButtons numDice={numDice} modifyNumDice={modifyNumDice} />
+                    modifyNumRolls={modifyNumRolls} />
             </View>
 
+            <Text>{"Extended"}</Text>
         </View>
     );
 }

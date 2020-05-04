@@ -16,8 +16,8 @@ export default function MainScreen() {
         if (mode !== 'single') setMode('single');
     }
 
-    const setMulti = () => {
-        if (mode !== 'multi') setMode('multi');
+    const setExtended = () => {
+        if (mode !== 'extended') setMode('extended');
     }
 
     return (
@@ -27,7 +27,7 @@ export default function MainScreen() {
             </View>
             <View style={{ marginLeft: 10, marginRight: 10 }}>
                 <SingleOrExtended type={mode}
-                    setSingle={setSingle} setMulti={setMulti}
+                    setSingle={setSingle} setExtended={setExtended}
                 />
             </View>
             <View style={{ marginLeft: 10, marginRight: 10 }}>

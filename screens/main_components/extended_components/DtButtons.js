@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import {
     MageButtonStyle as btn,
     MageButtonOutlineStyle as btnOut,
     MageButtonInvStyle as btnInv
-} from '../../Styles'
+} from '../../../Styles'
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export function DTButtons() {
+export function DTButtons({difficulty, numRolls, modifyDifficulty, modifyNumRolls}) {
     const greyCardBody = [
         btnOut.btn,
         { backgroundColor: '#ebebeb', flex: 1, height: 60, marginLeft: 5, marginRight: 5 },
@@ -60,17 +60,17 @@ export function DTButtons() {
                         <Text style={greyCardHeader}>Difficulty</Text>
                     </View>
                     <View style={grayCardBtnRow}>
-                        <TouchableOpacity style={grayCardYellowBtn}>
+                        <TouchableOpacity style={grayCardYellowBtn} onPress={() => modifyDifficulty(-1)}>
                             <View style={flexCenter}>
                                 <Text style={grayCardYellowBtnText}>{"-1"}</Text>
                             </View>
                         </TouchableOpacity>
                         <View style={grayCardNumber}>
                             <View style={flexCenter}>
-                                <Text style={grayCardYellowBtnText}>{"5"}</Text>
+                                <Text style={grayCardYellowBtnText}>{difficulty}</Text>
                             </View>
                         </View>
-                        <TouchableOpacity style={grayCardYellowBtn}>
+                        <TouchableOpacity style={grayCardYellowBtn} onPress={() => modifyDifficulty(1)}>
                             <View style={flexCenter}>
                                 <Text style={grayCardYellowBtnText}>{"+1"}</Text>
                             </View>
@@ -81,20 +81,20 @@ export function DTButtons() {
             <View style={greyCardBody}>
                 <View styles={{ flex: 1 }}>
                     <View style={flexCenter}>
-                        <Text style={greyCardHeader}>Threshold</Text>
+                        <Text style={greyCardHeader}># Rolls</Text>
                     </View>
                     <View style={grayCardBtnRow}>
-                        <TouchableOpacity style={grayCardYellowBtn}>
+                        <TouchableOpacity style={grayCardYellowBtn} onPress={() => modifyNumRolls(-1)}>
                             <View style={flexCenter}>
                                 <Text style={grayCardYellowBtnText}>{"-1"}</Text>
                             </View>
                         </TouchableOpacity>
                         <View style={grayCardNumber}>
                             <View style={flexCenter}>
-                                <Text style={grayCardYellowBtnText}>{"5"}</Text>
+                                <Text style={grayCardYellowBtnText}>{numRolls}</Text>
                             </View>
                         </View>
-                        <TouchableOpacity style={grayCardYellowBtn}>
+                        <TouchableOpacity style={grayCardYellowBtn} onPress={() => modifyNumRolls(1)}>
                             <View style={flexCenter}>
                                 <Text style={grayCardYellowBtnText}>{"+1"}</Text>
                             </View>

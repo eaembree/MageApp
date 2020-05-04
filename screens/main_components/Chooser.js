@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { Single } from './Single';
-import { Multi } from './Multi';
+import { Extended } from './Extended';
 
 export function Chooser({ rollType }) {
     let output;
@@ -9,7 +9,7 @@ export function Chooser({ rollType }) {
         output = <Single />;
     }
     else {
-        output = <Multi />;
+        output = <Extended />;
     }
 
     return output
