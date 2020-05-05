@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Switch } from 'react-native';
 
 import { SettingsContext } from '../SettingsData'
 
 import { YesNoOption } from './settings_components/YesNoOption';
 import { BotchOption } from './settings_components/BotchOption';
 import { TensOption } from './settings_components/TensOption';
+import { MagePurple, MageGold } from '../Styles';
 
 const styles = StyleSheet.create({
     screenContainer: {
@@ -26,42 +27,47 @@ export default function SettingsScreen() {
         allowFailureFixWithWillpower, setAllowFailureFixWithWillpower
     } = React.useContext(SettingsContext);
 
+    var [tester, setTester] = React.useState(false);
+
     return (
         <ScrollView style={styles.screenContainer}>
-            <Text style={styles.header}>{"Settings"}</Text>
             <View style={styles.spacer}>
-                <YesNoOption
-                    title="Show Botch/Tens Buttons"
-                    yesTrue={showBotchTensButtons}
-                    yesClicked={() => { setShowBotchTensButtons(true) }}
-                    noClicked={() => { setShowBotchTensButtons(false) }}
-                />
+                <Text style={styles.header}>{"Settings"}</Text><View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 20 }}>Show Botch/Tens Buttons</Text>
+                    <Switch trackColor={{ true: MagePurple }} thumbColor={tester == false ? null : MageGold}
+                        value={showBotchTensButtons}
+                        onValueChange={(v) => setShowBotchTensButtons(v)}
+                    />
+                </View>
             </View>
 
             <View style={styles.spacer}>
-                <YesNoOption
-                    title="Allow Botch Fix w/ Willpower"
-                    yesTrue={allowBotchFixWithWillpower}
-                    yesClicked={() => { setAllowBotchFixWithWillpower(true) }}
-                    noClicked={() => { setAllowBotchFixWithWillpower(false) }}
-                />
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 20 }}>Allow Botch Fix w/ Willpower</Text>
+                    <Switch trackColor={{ true: MagePurple }} thumbColor={tester == false ? null : MageGold}
+                        value={allowBotchFixWithWillpower}
+                        onValueChange={(v) => setAllowBotchFixWithWillpower(v)}
+                    />
+                </View>
             </View>
 
             <View style={styles.spacer}>
-                <YesNoOption
-                    title="Allow Failure Fix w/ Willpower"
-                    yesTrue={allowFailureFixWithWillpower}
-                    yesClicked={() => { setAllowFailureFixWithWillpower(true) }}
-                    noClicked={() => { setAllowFailureFixWithWillpower(false) }}
-                />
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 20 }}>Allow Failure w/ Willpower</Text>
+                    <Switch trackColor={{ true: MagePurple }} thumbColor={tester == false ? null : MageGold}
+                        value={allowFailureFixWithWillpower}
+                        onValueChange={(v) => setAllowFailureFixWithWillpower(v)}
+                    />
+                </View>
             </View>
 
-            <View style={styles.spacer}>
-                <BotchOption />
-            </View>
-
-            <View style={styles.spacer}>
-                <TensOption />
+            <View style={[styles.spacer, { flexDirection: 'row' }]}>
+                <View style={{ flex: 1, paddingRight: 3 }}>
+                    <BotchOption />
+                </View>
+                <View style={{ flex: 1, paddingLeft: 3 }}>
+                    <TensOption />
+                </View>
             </View>
         </ScrollView>
     )
