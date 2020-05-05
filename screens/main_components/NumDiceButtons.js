@@ -8,7 +8,7 @@ import {
     MageGrey, MagePurple
 } from '../../Styles'
 
-export function NumDiceButtons({ numDice, modifyNumDice }) {
+export function NumDiceButtons({ numDice, modifyNumDice, rollDice }) {
     return (
         <View style={styles.compContainer}>
             <View style={styles.greyCardBody}>
@@ -29,7 +29,7 @@ export function NumDiceButtons({ numDice, modifyNumDice }) {
                     <View style={styles.rollContainer}>
                         <TouchableOpacity
                             style={[btnInv.btn, { flex: 1 }]}
-                            onPress={() => setModalVisible(false)}>
+                            onPress={() => rollDice()}>
                             <Text style={[btnInv.textColor, btnInv.btnText]}>
                                 {numDice} <FontAwesome5 name="dice-d20" />
                             </Text>

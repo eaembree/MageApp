@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { SingleOrExtended } from './main_components/SingleOrExtended';
 import { Chooser } from './main_components/Chooser';
 import { BotchTensBtns } from './main_components/MainBotchTensBtns'
@@ -21,7 +21,7 @@ export default function MainScreen() {
     }
 
     return (
-        <View>
+        <ScrollView>
             <View style={{marginTop: 5}}>
                 <BotchTensBtns showBotchTensButtons={showBotchTensButtons} />
             </View>
@@ -33,6 +33,6 @@ export default function MainScreen() {
             <View style={{ marginLeft: 10, marginRight: 10 }}>
                 <Chooser rollType={mode} />
             </View>
-        </View>
+        </ScrollView>
     );
 }
