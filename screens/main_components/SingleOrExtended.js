@@ -61,7 +61,6 @@ export function SingleOrExtended({ type, setSingle, setExtended }) {
 }
 
 function CheckOrNo({showCheck, stylesArray, text}) {
-    console.log(stylesArray)
     let result = <Text style={stylesArray}>{text}</Text>
 
     if(showCheck){
