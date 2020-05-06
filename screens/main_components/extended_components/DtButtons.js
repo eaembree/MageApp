@@ -20,7 +20,7 @@ export function DTButtons({difficulty, numRolls, modifyDifficulty, modifyNumRoll
     const greyCardBody = [
         btnOut.btn,
         { backgroundColor: '#ebebeb', flex: 1, height: 60, marginLeft: 5, marginRight: 5 },
-        { paddingTop: 2, paddingBottom: 2, marginTop: 20 },
+        { paddingTop: 2, paddingBottom: 2 },
         { borderRadius: 5 }
     ];
     const greyCardHeader = [
@@ -53,7 +53,7 @@ export function DTButtons({difficulty, numRolls, modifyDifficulty, modifyNumRoll
     ];
     const flexCenter = { flex: 1, justifyContent: 'center', alignItems: 'center' }
     return (
-        <View style={[styles.container, { marginTop: 25, marginBottom: 40 }]}>
+        <View style={[styles.container]}>
             <View style={greyCardBody}>
                 <View styles={{ flex: 1 }}>
                     <View style={flexCenter}>

@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, ScrollView, Switch } from 'react-native';
 
 import { SettingsContext } from '../SettingsData'
 
-import { YesNoOption } from './settings_components/YesNoOption';
 import { BotchOption } from './settings_components/BotchOption';
 import { TensOption } from './settings_components/TensOption';
 import { MagePurple, MageGold } from '../Styles';

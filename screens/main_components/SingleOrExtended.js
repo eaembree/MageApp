@@ -37,7 +37,7 @@ export function SingleOrExtended({ type, setSingle, setExtended }) {
     }
 
     return (
-        <View style={[styles.container, { marginTop: 25, marginBottom: 20 }]}>
+        <View style={[styles.container, {  }]}>
             <TouchableOpacity
                 style={[leftBtnStyle, styles.leftButton]}
                 onPress={singleCallback}

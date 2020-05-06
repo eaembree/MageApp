@@ -13,8 +13,8 @@ export function Single() {
     const MIN_THRESHOLD = 0, MAX_THRESHOLD = 6;
     const MIN_NUM_DICE = 1, MAX_NUM_DICE = 1000;
 
-    const DIFFICULTY_START = 5;
-    const THRESHOLD_START = 5;
+    const DIFFICULTY_START = 6;
+    const THRESHOLD_START = 0;
     const NUM_DICE_START = 3
 
     let [difficulty, setDifficulty] = React.useState(DIFFICULTY_START);
@@ -68,7 +68,7 @@ export function Single() {
 
     return (
         <View>
-            <View style={{ marginTop: 5 }}>
+            <View>
                 <DTButtons
                     difficulty={difficulty}
                     threshold={threshold}
@@ -81,7 +81,7 @@ export function Single() {
             <View style={{ marginTop: 5 }}>
                 <SingleResults {...lastResult} />
             </View>
-            <View style={{ marginTop: 5 }}>
+            <View style={{ marginTop: 5, marginBottom: 5 }}>
                 <HistoryWrapper
                     history={history}
                     showHistory={showHistory}

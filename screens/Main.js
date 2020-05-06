@@ -25,12 +25,12 @@ export default function MainScreen() {
             <View style={{marginTop: 5}}>
                 <BotchTensBtns showBotchTensButtons={showBotchTensButtons} />
             </View>
-            <View style={{ marginLeft: 10, marginRight: 10 }}>
+            <View style={{ marginLeft: 10, marginRight: 10, marginTop: 5 }}>
                 <SingleOrExtended type={mode}
                     setSingle={setSingle} setExtended={setExtended}
                 />
             </View>
-            <View style={{ marginLeft: 10, marginRight: 10 }}>
+            <View style={{ marginLeft: 10, marginRight: 10, marginTop: 5 }}>
                 <Chooser rollType={mode} />
             </View>
         </ScrollView>

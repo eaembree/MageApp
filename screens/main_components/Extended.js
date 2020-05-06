@@ -8,7 +8,7 @@ export function Extended() {
     const MIN_NUM_ROLLS = 2, MAX_NUM_ROLLS = 1000;
     const MIN_NUM_DICE = 1, MAX_NUM_DICE = 1000;
 
-    const DIFFICULTY_START = 5;
+    const DIFFICULTY_START = 6;
     const NUM_ROLLS_START = 2;
     const NUM_DICE_START = 3
 
@@ -39,7 +39,7 @@ export function Extended() {
 
     return (
         <View>
-            <View style={{ marginTop: 5 }}>
+            <View>
                 <DTButtons
                     difficulty={difficulty}
                     numRolls={numRolls}
