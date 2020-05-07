@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "MageApp",
+    "description": "A Mage the Ascension dice rolling app. And maybe more...",
     "slug": "MageApp",
     "platforms": [
       "ios",
