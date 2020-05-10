@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { DTButtons } from './extended_components/DtButtons';
+import React from 'react';
+import { View } from 'react-native';
+import { DiceRollsButtons } from './extended_components/DiceRollsButtons';
+import { NumNeededButtons } from './extended_components/NumNeededButtons';
 import { clamp } from '../../utils/Math';
+import { NumDiceButtons } from './NumDiceButtons';
 
 export function Extended() {
     const MIN_DIFFICULTY = 2, MAX_DIFFICULTY = 10;
     const MIN_NUM_ROLLS = 2, MAX_NUM_ROLLS = 1000;
     const MIN_NUM_DICE = 1, MAX_NUM_DICE = 1000;
+    const MIN_SUCCESSES_NEEDED_DICE = 1, MAX_SUCCESSES_NEEDED_DICE = 1000;
 
     const DIFFICULTY_START = 6;
     const NUM_ROLLS_START = 2;
-    const NUM_DICE_START = 3
+    const NUM_DICE_START = 3;
+    const ROLLS_UNLIMITED_START = false;
+    const SUCCESSES_NEEDED_START = 1;
 
     let [difficulty, setDifficulty] = React.useState(DIFFICULTY_START);
     let [numRolls, setNumRolls] = React.useState(NUM_ROLLS_START);
+    let [rollsUnlimited, setRollsUnlimited] = React.useState(ROLLS_UNLIMITED_START);
     let [numDice, setNumDice] = React.useState(NUM_DICE_START);
+    let [successesNeeded, setSuccessesNeeded] = React.useState(SUCCESSES_NEEDED_START)
 
     const modifyDifficulty = (change) => {
         if (change == 0) return;
@@ -37,17 +44,40 @@ export function Extended() {
         setNumDice(newVal);
     }
 
+    const modifySuccessesNeeded = (change) => {
+        if (change == 0) return;
+        let newVal = clamp(successesNeeded + change, MIN_SUCCESSES_NEEDED_DICE, MAX_SUCCESSES_NEEDED_DICE);
+        if (newVal == successesNeeded) return;
+        setSuccessesNeeded(newVal);
+    }
+
+    const toggleRollsUnlimited = () => {
+        setRollsUnlimited(!rollsUnlimited);
+    }
+
+    const rollDice = () => {
+        // TODO
+    }
+
     return (
         <View>
             <View>
-                <DTButtons
+                <DiceRollsButtons
                     difficulty={difficulty}
                     numRolls={numRolls}
                     modifyDifficulty={modifyDifficulty}
-                    modifyNumRolls={modifyNumRolls} />
+                    modifyNumRolls={modifyNumRolls}
+                    rollsUnlimited={rollsUnlimited}
+                    toggleRollsUnlimited={toggleRollsUnlimited} />
             </View>
 
-            <Text>{"Extended"}</Text>
+            <View style={{marginTop: 5}}>
+                <NumNeededButtons value={successesNeeded} modifyValue={modifySuccessesNeeded} />
+            </View>
+
+            <View style={{ marginTop: 5 }}>
+                <NumDiceButtons numDice={numDice} modifyNumDice={modifyNumDice} rollDice={rollDice} />
+            </View>
         </View>
     );
 }
