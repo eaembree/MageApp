@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const MagePurple = '#a32fa3';
+export const MagePurple = '#800080';
 export const MageGold = '#ffc300'
 export const MageGrey = '#ebebeb';
 export const BtnHeight = 40;
