@@ -4,9 +4,13 @@ import { StyleSheet, StatusBar, Platform, YellowBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import DiceRollerScene from './DiceRollerScene'
-import SphereReference from './SphereReference'
+import DiceRoller from './screens/DiceRoller'
+import SphereReference from './screens/SphereReference'
 import LinksScreen from './screens/Links'
+
+import {
+  MagePurple
+} from './Styles'
 
 YellowBox.ignoreWarnings([
   // 2020-05-01: There is a 'bug' causing this list issue to pop up a lot.
@@ -29,10 +33,14 @@ const styles = StyleSheet.create({
 function App() {
   return (
     <NavigationContainer styles={styles.baseComponent}>
-      <Drawer.Navigator initialRouteName="DiceRoller">
+      <Drawer.Navigator initialRouteName="DiceRoller"
+        drawerContentOptions={{
+          activeTintColor: MagePurple
+        }}
+      >
         <Drawer.Screen
         name="DiceRoller"
-        component={DiceRollerScene}
+        component={DiceRoller}
         options={{title: "Dice Roller"}} />
         <Drawer.Screen
           name="SphereReference"

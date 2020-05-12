@@ -2,10 +2,10 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 
-import { MagePurple, MageGold } from './Styles';
-import { Icons128 } from './MageIcons'
+import { MagePurple, MageGold } from '../Styles';
+import { Icons128 } from '../MageIcons'
 import { FontAwesome5 } from '@expo/vector-icons';
-import { clamp } from './utils/Math'
+import { clamp } from '../utils/Math'
 
 const Stack = createStackNavigator();
 
@@ -219,19 +219,22 @@ function Correspondence() {
 
 function Data() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "On the Ones and Zeroes", body: "Allows the user to determine the exact distance between points or the connections between visible objects." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "The Reach And The View", body: "Allows expansion of one's connections to see and touch places in other areas of the world, so long as they have instruments that allow them access to distant locations." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Quantum Teleportation", body: "Allows the relocation of self via quantum teleportation." },
+        { title: "Firewalling", body: "Allows the user to bar an area against any attempts to intrude via particle physics." },
+        { title: "Surveillance Hub", body: "Allows the splitting of one's perceptions to watch multiple locations at once." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Between Space", body: "Allows the shaping of distance to one's designs, allowing for mass transportations of physical objects through \"portals\"." },
+        { title: "Dimensional Cohabitation", body: "Allows the creation duplicates at other places (that can become solid through the use of other Pattern spheres)." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Redistribute Physical Properties", body: "Allows the manipulation of physics as easily as code, to create overlays of multiple places, altering sizes and volumes, or stretching distances." }
     ]
 
     return (
@@ -280,19 +283,19 @@ function Entropy() {
 
 function Forces() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Perceive Forces", body: "The mage becomes privy to Force patterns around them, transcending the limits of human sensory organs." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Control Minor Forces", body: "The mage can alter existing forces within sensory range. Applications are varied and allow a mage to warp light to make things invisible, change their colors by altering the spectrum of localized light, render them silent by bending sound waves in their vicinity, manipulate currents of electricity, make fires dance according to specific images and spread." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Transmute Minor Forces", body: "The mage can manipulate Patterns of Forces, allowing them to convert forces into other types, shift their intensity radically, or even create force from nothing." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Control Major Forces", body: "The mage can manipulate Force patterns on a wider scale, allowing them to use former effect on more than one Pattern. This allows them to change the weather, insulate a whole building or area of forest from fire and electricity, divert light into a series o rooms, banish all sounds from a huge cavern, or render a Chantry invisible to normal sight." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Transmute Major Forces", body: "The mage can use their power on nearly all Force Patterns within their surroundings, summoning storms of fire, massive charges of electricity, shadows that blot out entire city blocks, and typhoons even in the midst of a calm day." }
     ]
 
     return (
@@ -309,19 +312,24 @@ function Forces() {
 
 function Life() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Sense Life", body: "The mage can sense the potency of a Life Pattern, measuring its relative health and well-being, as well as basic information (age, sex, etc.)" }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Alter Simple Patterns", body: "The mage can influence simple life forms, like fungi, invertebrates, or plants." },
+        { title: "Heal Self", body: "The mage can fix smaller damages to their Pattern." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Alter Self", body: "The mage can alter their Pattern in small ways. They may change the color of their hair, enhance their eyesight, grow claw-like fingernails or suspend their need to breathe oxygen for several hours." },
+        { title: "Transform Simple Patterns", body: "bodThe mage can transform simple life forms into others, transforming i.e. a snail into a turnip.y" },
+        { title: "Heal Others", body: "The mage can fix smaller damages in other Life Patterns." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Alter Complex Patterns", body: "The mage can alter complex Life Patterns of vertebrates, possibly inflicting serious damages or enhancing their natural capabilities." },
+        { title: "Transform Self", body: "The mage can transform their own pattern, allowing them to assume the shape of an animal of similar size or mass or transform their physical features to resemble another human." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Transform Complex Patterns", body: "The mage can transform lifeforms into other lifeforms without altering their intelligence." },
+        { title: "New Life", body: "The mage can create a Life Pattern that is not related to any previous Life pattern they have observed and which could have traits not found normally in nature, i.e. feeding on noble gases. The created creature lacks a soul, however (this demands auxiliary Spheres)." }
     ]
 
     return (

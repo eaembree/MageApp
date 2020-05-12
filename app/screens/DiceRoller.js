@@ -2,16 +2,16 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import MainScreen from './screens/Main';
-import SettingsScreen from './screens/Settings'
-import LinksScreen from './screens/Links'
-import { SettingsContext, TensOptions, BotchOptions } from './SettingsData';
+import MainScreen from './Main';
+import SettingsScreen from './Settings'
+import LinksScreen from './Links'
+import { SettingsContext, TensOptions, BotchOptions } from '../SettingsData';
 
 
 const Tab = createMaterialTopTabNavigator();
 
 
-export default function DiceRollerScene() {
+export default function DiceRoller() {
   const [tensOption, setTensOption] = React.useState(TensOptions.Regular);
   const [botchOption, setBotchOption] = React.useState(BotchOptions.RevisedM20);
   const [showBotchTensButtons, setShowBotchTensButtons] = React.useState(true);
