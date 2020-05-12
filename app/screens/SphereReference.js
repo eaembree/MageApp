@@ -494,19 +494,25 @@ function PrimalUtility() {
 
 function Spirit() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Spirit Senses", body: "Allows a mage to peek into the Penumbra and determine the local strength of the Gauntlet." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Touch Spirit", body: "The mage can affect small things on the other side of the Gauntlet while remaining in the physical world." },
+        { title: "Manipulate Gauntlet", body: "The mage can slightly thicken or thin the local Gauntlet." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Pierce Gauntlet", body: "The mage can create a temporary rift within the Gauntlet." },
+        { title: "Step Sideways", body: "The mage can step through smaller rifts within the Gauntlet and enter the Spirit World." },
+        { title: "Rouse And Lull Spirit", body: "The mage can influence spirits, either rousing them to action or lulling them to sleep. It is also possible to harm Spirits with this level." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Rend and Repair Gauntlet", body: "The mage can rend or repair the Gauntlet, allowing multiple persons to enter it." },
+        { title: "Bind Spirits", body: "The mage can summon or otherwise compel Spirits to fulfill his orders." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Forge Ephemera ", body: "The mage can shape ephemera as they see fit, creating new Realms or healing or transforming the Pattern of a Spirit." },
+        { title: "Outward Journeys", body: "The mage can cross the Outer Horizon, entering the Deep Umbra." },
+        { title: "Gilgul", body: "The mage can attack a target's Avatar." }
     ]
 
     return (
@@ -552,19 +558,26 @@ function DimensionalScience() {
 
 function Time() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Time Sense", body: "Allows a mage to determine the exact time of day down to the second. In addition, they become aware of distortions of the stream of time in their local area." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Time Sight", body: "Allows a mage to see forward or backward through time. Although those impressions are fleeting, hazy, not entirely accurate, and bound by the limitations of that time and place (that is, what a bystander in that specific time and location could sense under the circumstances), they are nonetheless useful." },
+        { title: "Thicken the Walls of Time", body: "Enhance the rigidity of the local Timeline to ward it against manipulation." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Time Contraction Or Dilation", body: "Allows a mage to alter the rate at which things happen in comparison to the \"normal world.\"" },
+        { title: "\"Bullet Time\"", body: "Allows a mage to slow things down (without changing the subjective time)." },
+        { title: "Rewind Time", body: "Allows a mage to rewind or loop time for a few seconds or minutes." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Time Determinism", body: "Allows a mage to literally stop time in its tracks." },
+        { title: "Time Bubble", body: "Allows to capture other beings or phenomena in bubbles of time." },
+        { title: "Trigger Effect", body: "Allows the mage to generate a keyed pause", body: "Something that does not happen until a specific person, creature, or item comes into the right position." },
+        { title: "Anchor Point", body: "Allows to create temporal anchors for the mage in the case that they travel through time." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Time Travel", body: "With an anchor point in the present, the mage can send themself or other people or things into the near future or past temporarily." },
+        { title: "Time Immunity", body: "The mage begins to exist outside of the temporal flow and can pull objects into their own temporal field." }
     ]
 
     return (
