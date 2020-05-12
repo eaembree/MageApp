@@ -346,19 +346,19 @@ function Life() {
 
 function Matter() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Matter Perceptions", body: " Allows the mage to see basic information about a Matter Pattern." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Basic Transmutation", body: "Allows the mage to change one homogenous substance into another without affecting its shape, temperature, or basic state (i.e. lead to gold)." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Alter Form", body: "Allows a mage to change the essential nature of a Mattern Pattern, changing its form or even compressing or expanding certain elements of its material properties (i.e. lead to fog)." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Complex Transformation", body: "Allows the mage to transform Matter Patterns into complex objects composed of multiple independent pieces with different bases or combine homogenous materials to form alloys (i.e lead into a gun)." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Alter PAllows the mage to create substances that transcend the limitations of scientific possibility, conjure materials unknown to Earthly reality, or share the deadly legacies of radioactive matter.roperties", body: "body" }
     ]
 
     return (
@@ -375,19 +375,31 @@ function Matter() {
 
 function Mind() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Sense Thoughts and Emotions", body: "Allows a mage to recognize thought and mood impulses around them." },
+        { title: "Empower Self", body: "Allows a mage to enhance their conscious abilities to improve mental skills." },
+        { title: "Mind Shield", body: "Allows a mage to build a shield around their mind, hiding their Aura." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Read Surface Thoughts", body: "Allows a mage to skim the contents of another's mind." },
+        { title: "Create Impressions", body: "Allows a mage to determine particular flavours of Resonance an object within one's mind might have." },
+        { title: "Mental Impulse", body: "Send a brief mental impulse (i.e rage, regret) against a target." },
+        { title: "Empathic Bond", body: "Establish a short empathic link between two persons." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Mental Link", body: "Establishes a link that allows the exchange of ideas or images between two persons." },
+        { title: "Dreamwalk", body: "Allows a mage to control their own mind during their sleep, allowing for lucid dreaming, the creation of a Demesne or even entrance into the Dreaming." },
+        { title: "Project Illusions", body: "Allows a mage to conjure mental images into a target." },
+        { title: "Psychic Blast", body: "Attacks a target's mind with painful thoughts" }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Control Conscious Mind", body: "Allows a mage to invade another's mind." },
+        { title: "Alter Consciousness", body: "Allows a mage to alter one's mind, changing memories and setting up posthypnotic suggestions and commands." },
+        { title: "Astral Projection", body: "Allows a mage to project their own mind away from their physical form into the penumbra of the Astral Reaches." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Control Subconscious", body: "Allows a mage to rewrite a subject's personality and beliefs totally." },
+        { title: "Untether", body: "Allows a mage to separate their mind from their body for an extended period of time, leaving their body behind." },
+        { title: "Forge Psyche", body: "Allows the mage to create an intelligence out of nowhere (Auxiliary Spheres are needed to anchor this intelligence somewhere)." }
     ]
 
     return (
