@@ -416,19 +416,39 @@ function Mind() {
 
 function Prime() {
     let level1Data = [
-        { title: "title", body: "body" }
+        { title: "Etheric Senses", body: "The mage can perceive Quintessential energy, and is alerted when someone uses magic in their vicinity." },
+        { title: "Effuse Personal Quintessence", body: "Allows the mage to subsume small amounts Quintessence into their personal Pattern above their Avatar rating." },
+        { title: "Consecration", body: "Allows a mage to enchant an object to change with them during shapeshifting, stepping sideways etc., by imbuing it with their personal Resonance." }
     ]
     let level2Data = [
-        { title: "title", body: "body" }
+        { title: "Fuel Pattern", body: "Allows the mage to store small amounts of Quintessence in an object." },
+        { title: "Weave Odyllic Force", body: "The mage can summon bolts of pure Primal Energy against Patterns. This spell is nearly always vulgar." },
+        { title: "Enchant Patterns", body: "Allows the mage to enchant the natural properties of a Pattern by tapping into its Quintessence, allowing it to interact with ephemeral objects." },
+        { title: "Create Pattern", body: "In conjecture with other Spheres, the mage can create a simple Pattern out of thin air, by diverging the flow of Quintessence in the Tellurian into the new form he wants to create." },
+        { title: "Body of Light", body: "Allows the mage to conjure an idealized self projected from ephemeral energy." }
     ]
     let level3Data = [
-        { title: "title", body: "body" }
+        { title: "Channel Quintessence", body: "The mage can draw free-flowing Quintessence from a Node, Juncture or Tass into their pattern or transfer Quintessence from their own Pattern into another Pattern." },
+        { title: "Sublimate Quintessential Matter & Forces", body: "Allows the mage to shape inanimate Tass into a temporary Wonder or Periapt." },
+        { title: "Activate Quintessential Life", body: "Allows a mage to create temporary lifeforms in conjunction with the Life Sphere by drawing Quintessence into a pattern." },
+        { title: "Enchant Life", body: "Allows a mage to enchant lifeforms to harm Patterns directly." }
     ]
     let level4Data = [
-        { title: "title", body: "body" }
+        { title: "Expel Base Energy from Matter & Forces", body: "The Mage gains the power to harvest Quintessence directly from inanimate Patterns, draining them from their energy." },
+        { title: "Sublimate Quintessential Life", body: "The Mage can transform living Tass into pure quintessential energy." },
+        { title: "Permanently Enchant Matter & Forces", body: "Allows the mage to create stable Wonders and Periapts for personal use." },
+        { title: "Suffuse Matter & Forces", body: "The Mage can create inanimate Tass from Quintessence." },
+        { title: "Create Soulgem", body: "The mage can create a small periapt that resonates with their own Avatar, allowing only them to utilize it." },
+        { title: "Tap Wellspring", body: "At a place of strong Resonance, the mage can gather a small amount of Quintessence from it." }
     ]
     let level5Data = [
-        { title: "title", body: "body" }
+        { title: "Expel Base Energy from Life", body: "Rend Quintessence from a living Pattern." },
+        { title: "Alter Quintessential Flow", body: "Allows a mage to refresh a Pattern with new Quintessence." },
+        { title: "Nullify Paradox", body: "Allows a mage to use Primal Energy to smooth over disturbations in the Tapestry, nullifying Paradox." },
+        { title: "Permanently Enchant Life", body: "Make enchantments on a living Pattern permanent." },
+        { title: "Suffuse Life", body: "Consecrate a being with Quintessence to form living Tass." },
+        { title: "Create Soulflower", body: "Allows a mage to create a living Periapt from their own Avatar." },
+        { title: "Fountains of Paradise", body: "The mage can create a new Node or Juncture by manipulating the global flow of Quintessence to a strong place of Resonance." }
     ]
 
     return (
