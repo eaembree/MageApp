@@ -1,9 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import {
+    View, Text, StyleSheet, ScrollView,
+    TouchableOpacity, Image, ImageBackground
+} from 'react-native';
 
 import { MagePurple, MageGold } from '../Styles';
 import { Icons128 } from '../MageIcons'
+import { SpheresLarge } from '../SphereImages'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { clamp } from '../utils/Math'
 
@@ -22,6 +26,21 @@ const ico = {
     dat: Icons128.Data,
     dim: Icons128.Dimensional,
     uti: Icons128.PrimalUtility
+}
+
+const spheres = {
+    cor: SpheresLarge.Correspondence,
+    ent: SpheresLarge.Entropy,
+    for: SpheresLarge.Forces,
+    lif: SpheresLarge.Life,
+    mat: SpheresLarge.Matter,
+    min: SpheresLarge.Mind,
+    pri: SpheresLarge.Prime,
+    spi: SpheresLarge.Spirit,
+    tim: SpheresLarge.Time,
+    dat: SpheresLarge.Data,
+    dim: SpheresLarge.DimensionalScience,
+    uti: SpheresLarge.PrimalUtility
 }
 
 export default function SphereReference() {
@@ -72,14 +91,13 @@ function SphereList({ navigation }) {
 }
 
 function SphereLink({ img, imgRight, doNav, title }) {
-    let img2 = imgRight ? imgRight : img;
     return (
         <TouchableOpacity onPress={() => doNav()}
             style={styles.sphereLink}
         >
             <Image source={img} style={styles.sphereImage} />
             <Text style={styles.sphereText}>{title}</Text>
-            <Image source={img2} style={styles.sphereImage} />
+            <Image source={img} style={styles.sphereImage} />
         </TouchableOpacity>
     )
 }
@@ -166,21 +184,24 @@ function StandardPowers({ level1Data, level2Data, level3Data, level4Data, level5
     )
 }
 
-function SphereDetail({ title, icon, level1Data, level2Data, level3Data, level4Data, level5Data }) {
+function SphereDetail({ title, icon, backgroundImage, level1Data, level2Data, level3Data, level4Data, level5Data }) {
+    let backFinal = backgroundImage || icon;
     return (
-        <ScrollView style={detail.container}>
-            <View style={detail.headerRow}>
-                <Image source={icon} style={detail.sphereImageLarge} />
-                <Text style={detail.sphereTextLarge}>{title}</Text>
-                <Image source={icon} style={detail.sphereImageLarge} />
-            </View>
-            <StandardPowers
-                level1Data={level1Data}
-                level2Data={level2Data}
-                level3Data={level3Data}
-                level4Data={level4Data}
-                level5Data={level5Data} />
-        </ScrollView>
+        <ImageBackground source={backgroundImage} style={{ flex: 1 }} imageStyle={{ opacity: 0.2, resizeMode: 'contain' }}>
+            <ScrollView style={detail.container}>
+                <View style={detail.headerRow}>
+                    <Image source={icon} style={detail.sphereImageLarge} />
+                    <Text style={detail.sphereTextLarge}>{title}</Text>
+                    <Image source={icon} style={detail.sphereImageLarge} />
+                </View>
+                <StandardPowers
+                    level1Data={level1Data}
+                    level2Data={level2Data}
+                    level3Data={level3Data}
+                    level4Data={level4Data}
+                    level5Data={level5Data} />
+            </ScrollView>
+        </ImageBackground>
     )
 }
 
@@ -209,6 +230,7 @@ function Correspondence() {
         <SphereDetail
             title="Correspondence"
             icon={ico.cor}
+            backgroundImage={spheres.cor}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -241,6 +263,7 @@ function Data() {
         <SphereDetail
             title="Data"
             icon={ico.dat}
+            backgroundImage={spheres.dat}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -273,6 +296,7 @@ function Entropy() {
         <SphereDetail
             title="Entropy"
             icon={ico.ent}
+            backgroundImage={spheres.ent}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -302,6 +326,7 @@ function Forces() {
         <SphereDetail
             title="Forces"
             icon={ico.for}
+            backgroundImage={spheres.for}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -336,6 +361,7 @@ function Life() {
         <SphereDetail
             title="Life"
             icon={ico.lif}
+            backgroundImage={spheres.lif}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -358,13 +384,14 @@ function Matter() {
         { title: "Complex Transformation", body: "Allows the mage to transform Matter Patterns into complex objects composed of multiple independent pieces with different bases or combine homogenous materials to form alloys (i.e lead into a gun)." }
     ]
     let level5Data = [
-        { title: "Alter PAllows the mage to create substances that transcend the limitations of scientific possibility, conjure materials unknown to Earthly reality, or share the deadly legacies of radioactive matter.roperties", body: "body" }
+        { title: "Alter Properties", body: "Allows the mage to create substances that transcend the limitations of scientific possibility, conjure materials unknown to Earthly reality, or share the deadly legacies of radioactive matter." }
     ]
 
     return (
         <SphereDetail
             title="Matter"
             icon={ico.mat}
+            backgroundImage={spheres.mat}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -406,6 +433,7 @@ function Mind() {
         <SphereDetail
             title="Mind"
             icon={ico.min}
+            backgroundImage={spheres.min}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -454,6 +482,7 @@ function Prime() {
     return (
         <SphereDetail
             title="Prime"
+            backgroundImage={spheres.pri}
             icon={ico.pri}
             level1Data={level1Data}
             level2Data={level2Data}
@@ -484,6 +513,7 @@ function PrimalUtility() {
         <SphereDetail
             title="Primal Utility"
             icon={ico.uti}
+            backgroundImage={spheres.uti}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -519,6 +549,7 @@ function Spirit() {
         <SphereDetail
             title="Spirit"
             icon={ico.spi}
+            backgroundImage={spheres.spi}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -548,6 +579,7 @@ function DimensionalScience() {
         <SphereDetail
             title="Dimensional Science"
             icon={ico.dim}
+            backgroundImage={spheres.dim}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
@@ -584,6 +616,7 @@ function Time() {
         <SphereDetail
             title="Time"
             icon={ico.tim}
+            backgroundImage={spheres.tim}
             level1Data={level1Data}
             level2Data={level2Data}
             level3Data={level3Data}
