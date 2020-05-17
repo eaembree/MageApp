@@ -1,9 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { DiceRollsButtons } from './extended_components/DiceRollsButtons';
-import { NumNeededButtons } from './extended_components/NumNeededButtons';
+import { ExtendedBody } from './extended_components/ExtendedBody';
 import { clamp } from '../../utils/Math';
-import { NumDiceButtons } from './NumDiceButtons';
 
 export function Extended() {
     const MIN_DIFFICULTY = 2, MAX_DIFFICULTY = 10;
@@ -22,6 +19,8 @@ export function Extended() {
     let [rollsUnlimited, setRollsUnlimited] = React.useState(ROLLS_UNLIMITED_START);
     let [numDice, setNumDice] = React.useState(NUM_DICE_START);
     let [successesNeeded, setSuccessesNeeded] = React.useState(SUCCESSES_NEEDED_START)
+
+    let [rollingStarted, setRollingStarted] = React.useState(false);
 
     const modifyDifficulty = (change) => {
         if (change == 0) return;
@@ -55,29 +54,29 @@ export function Extended() {
         setRollsUnlimited(!rollsUnlimited);
     }
 
-    const rollDice = () => {
-        // TODO
+    const startRolling = () => {
+        setRollingStarted(true);
+    }
+
+    const stopRolling = () => {
+        setRollingStarted(false);
     }
 
     return (
-        <View>
-            <View>
-                <DiceRollsButtons
-                    difficulty={difficulty}
-                    numRolls={numRolls}
-                    modifyDifficulty={modifyDifficulty}
-                    modifyNumRolls={modifyNumRolls}
-                    rollsUnlimited={rollsUnlimited}
-                    toggleRollsUnlimited={toggleRollsUnlimited} />
-            </View>
-
-            <View style={{marginTop: 5}}>
-                <NumNeededButtons value={successesNeeded} modifyValue={modifySuccessesNeeded} />
-            </View>
-
-            <View style={{ marginTop: 5 }}>
-                <NumDiceButtons numDice={numDice} modifyNumDice={modifyNumDice} rollDice={rollDice} />
-            </View>
-        </View>
+        <ExtendedBody
+            rollingStarted={rollingStarted}
+            difficulty={difficulty}
+            numRolls={numRolls}
+            modifyDifficulty={modifyDifficulty}
+            modifyNumRolls={modifyNumRolls}
+            rollsUnlimited={rollsUnlimited}
+            toggleRollsUnlimited={toggleRollsUnlimited}
+            successesNeeded={successesNeeded}
+            modifySuccessesNeeded={modifySuccessesNeeded}
+            numDice={numDice}
+            modifyNumDice={modifyNumDice}
+            startRolling={startRolling}stopRolling
+            stopRolling={stopRolling}/>
+        
     );
 }
