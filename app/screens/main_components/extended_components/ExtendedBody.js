@@ -102,7 +102,7 @@ function Rolling({
                 options: {
                     spendWillpower: spendWillpower
                 },
-                running: runningState
+                running: computeNewRunningState()
             }
             setLastResult(newHistory);
             setHistory([newHistory].concat(history))
@@ -114,7 +114,7 @@ function Rolling({
                 difficulty={difficulty} numRolls={numRolls}
                 successesNeeded={successesNeeded} numDice={numDice}
                 stopRolling={stopRolling} />
-            <RollingBody />
+            <RollingBody doNewRoll={doNewRoll} lastResult={lastResult} history={history} />
         </View>
     )
 }
@@ -143,10 +143,59 @@ function RollingHeader({ difficulty, numRolls, successesNeeded, numDice, stopRol
     )
 }
 
-function RollingBody() {
+function RollingBody({ doNewRoll, lastResult, history }) {
+    let textStyleArray = [
+        btnInv.textColor, btnInv.btnText,
+        {
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            textDecorationLine: 'underline',
+            fontSize: 20,
+            marginTop: 5,
+            marginBottom: 5
+        }
+    ];
+
+    const shouldAllowRoll = () => {
+        return lastResult == null || !lastIsBotch();
+    }
+
+    const lastIsBotch = () => {
+        if(lastResult == null || lastResult.roll == null) return false;
+        return lastResult.roll.isBotch();
+    }
+
+    //console.log(lastResult);
+
+    let header = null;
+    if(lastIsBotch()) {
+        header =
+            <View style={{marginTop: 5, marginBottom: 5, padding: 10, borderRadius: 5, borderColor: 'red', borderWidth: 2, backgroundColor: 'blue'}}>
+                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'red', fontSize: 25}}>Botch</Text>
+            </View>
+    } else {
+        header = <View>
+                    <Text style={textStyleArray}>Roll</Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <TouchableOpacity
+                            style={[btn.btn, {flex: 1, marginLeft: 5, marginRight: 5}]}
+                            onPress={() => doNewRoll(false)}
+                        >
+                            <Text style={[btn.textColor, btn.btnText]}>Normal</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[btn.btn, {flex: 1, marginLeft: 5, marginRight: 5}]}
+                            onPress={() => doNewRoll(false)}
+                        >
+                            <Text style={[btn.textColor, btn.btnText]}>With Willpower</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+    }
+
     return (
-        <View style={{marginLeft: 10, marginRight: 10, marginTop: 10}}>
-            <Text>Rolling Body</Text>
+        <View style={{marginLeft: 10, marginRight: 10}}>
+            {header}
         </View>
     )
 }
