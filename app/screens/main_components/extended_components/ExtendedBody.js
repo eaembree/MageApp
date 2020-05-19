@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { DiceRollsButtons } from './DiceRollsButtons'
 import { NumNeededButtons } from './NumNeededButtons'
 import { NumDiceButtons } from '../NumDiceButtons';
@@ -85,14 +85,16 @@ function Rolling({
             tensOption, botchOption
         } = React.useContext(SettingsContext);
 
-        const computeNewRunningState = () => {
+        const computeNewRunningState = (spendWillpower) => {
+            let willMod = spendWillpower ? 1 : 0;
             return {
                 totalSuccesses: lastResult != null ? lastResult.running.totalSuccesses + 1 : 1,
-                totalWillpowerSpent: lastResult != null ? lastResult.running.totalWillpowerSpent + 1 : 1
+                totalWillpowerSpent: lastResult != null ? lastResult.running.totalWillpowerSpent + willMod : willMod
             }
         }
 
         const doNewRoll = (spendWillpower) => {
+            console.log('spend: ' + spendWillpower);
             let diceRoller = new DiceRoller();
             diceRoller.setBotch(botchOption);
             diceRoller.setTens(tensOption);
@@ -102,7 +104,7 @@ function Rolling({
                 options: {
                     spendWillpower: spendWillpower
                 },
-                running: computeNewRunningState()
+                running: computeNewRunningState(spendWillpower)
             }
             setLastResult(newHistory);
             setHistory([newHistory].concat(history))
@@ -185,7 +187,7 @@ function RollingBody({ doNewRoll, lastResult, history }) {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={[btn.btn, {flex: 1, marginLeft: 5, marginRight: 5}]}
-                            onPress={() => doNewRoll(false)}
+                            onPress={() => doNewRoll(true)}
                         >
                             <Text style={[btn.textColor, btn.btnText]}>With Willpower</Text>
                         </TouchableOpacity>
@@ -193,11 +195,103 @@ function RollingBody({ doNewRoll, lastResult, history }) {
                 </View>
     }
 
+    let body;
+    if(history == null || history.length == 0) {
+        body = <View><Text>empty</Text></View>
+    } else {
+        body = <RollingHistory history={history}/>
+    }
+
     return (
         <View style={{marginLeft: 10, marginRight: 10}}>
             {header}
+            {body}
         </View>
     )
+}
+
+function RollingHistory({ history }) {
+    return (
+        <View>
+            <FlatList
+                data={history}
+                renderItem={({ item, index }) =>
+                    <RollingHistoryItem
+                        roll={item.roll}
+                        options={item.options}
+                        running={item.running}
+                        index={index} />}
+                keyExtractor={(item, index) => `history-item-${index}`}
+            />
+        </View>
+    )
+}
+
+function RollingHistoryItem({roll, options, running, index}) {
+    const greyBoxCommon = {
+        borderColor: MagePurple, borderWidth: 1, borderRadius: 3,
+        backgroundColor: 'lightgray',
+        textAlignVertical: 'center', textAlign: 'center',
+        marginTop: 5,
+        paddingTop: 3, paddingBottom: 3
+    }
+    return (
+        <View style={{marginTop: 5, borderColor: 'gray', borderWidth: 1, borderRadius: 5}}>
+            <View style={{backgroundColor: 'lightgray', borderTopLeftRadius: 5, borderTopRightRadius: 5, borderColor: 'gray', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0, borderWidth: 1}}>
+                <Text>Top</Text>
+            </View>
+            <View style={{paddingTop: 5, paddingBottom: 5}}>
+                <Text>{running.totalSuccesses} Total Successes</Text>
+                <Text>roll outcome {roll.outcome}</Text>
+                <Text style={[greyBoxCommon, btnInv.textColor, btnInv.btnText, {marginLeft: 20, marginRight: 20}]}>Willpower Spent: {running.totalWillpowerSpent}</Text>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginLeft: 20, marginRight: 20 }}>
+                    <Text style={[greyBoxCommon, { flex: 1, marginRight: 10 }]}>
+                        <Text style={[btnInv.textColor, btnInv.btnText]}>Outcome: </Text>
+                        <Text style={{ color: MagePurple }}>{roll.finalSuccesses}</Text>
+                    </Text>
+                    <Text style={[greyBoxCommon, { flex: 1, marginLeft: 10 }]}>
+                        <Text style={[btnInv.textColor, btnInv.btnText]}>Successes: </Text>
+                        <Text style={{ color: MagePurple }}>{roll.successes}</Text>
+                    </Text>
+                </View>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginLeft: 20, marginRight: 20 }}>
+                    <Text style={[greyBoxCommon, { flex: 1, marginRight: 10 }]}>
+                        <Text style={[btnInv.textColor, btnInv.btnText]}>Ones: </Text>
+                        <Text style={{ color: MagePurple }}>{roll.ones}</Text>
+                    </Text>
+                    <Text style={[greyBoxCommon, { flex: 1, marginLeft: 10 }]}>
+                        <Text style={[btnInv.textColor, btnInv.btnText]}>Dice: </Text>
+                        <Text style={{ color: MagePurple }}><Dice rollOutcomesArray={roll.rollOutcomesArray} /></Text>
+                    </Text>
+                </View>
+            </View>
+        </View>
+    )
+}
+
+function Dice({ rollOutcomesArray }) {
+    let theMap = rollOutcomesArray.map((item, index) => {
+        if (item == 10) return <Ten key={index.toString()} />
+        if (item == 1) return <One key={index.toString()} />
+        return <OtherNum n={item} key={index.toString()} />
+    })
+    return (
+        <Text>{theMap}</Text>
+    )
+}
+
+function Ten() {
+    return <Text style={{ fontWeight: 'bold' }}>10 </Text>
+}
+
+function One() {
+    return <Text style={{ color: 'red' }}>1 </Text>
+}
+
+function OtherNum({ n }) {
+    return <Text>{n} </Text>
 }
 
 const styles = StyleSheet.create({
