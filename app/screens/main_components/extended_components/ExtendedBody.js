@@ -85,16 +85,15 @@ function Rolling({
             tensOption, botchOption
         } = React.useContext(SettingsContext);
 
-        const computeNewRunningState = (spendWillpower) => {
+        const computeNewRunningState = (newSuccesses, spendWillpower) => {
             let willMod = spendWillpower ? 1 : 0;
             return {
-                totalSuccesses: lastResult != null ? lastResult.running.totalSuccesses + 1 : 1,
+                totalSuccesses: lastResult != null ? lastResult.running.totalSuccesses + newSuccesses : newSuccesses,
                 totalWillpowerSpent: lastResult != null ? lastResult.running.totalWillpowerSpent + willMod : willMod
             }
         }
 
         const doNewRoll = (spendWillpower) => {
-            console.log('spend: ' + spendWillpower);
             let diceRoller = new DiceRoller();
             diceRoller.setBotch(botchOption);
             diceRoller.setTens(tensOption);
@@ -104,10 +103,16 @@ function Rolling({
                 options: {
                     spendWillpower: spendWillpower
                 },
-                running: computeNewRunningState(spendWillpower)
+                running: computeNewRunningState(result.finalSuccesses, spendWillpower)
             }
             setLastResult(newHistory);
             setHistory([newHistory].concat(history))
+        }
+
+        const removeLastRoll = () => {
+            let newArray = history.filter((item, index) => index != 0);
+            setLastResult(newArray.length == 0 ? null : newArray[0])
+            setHistory(newArray);
         }
 
     return (
@@ -116,7 +121,7 @@ function Rolling({
                 difficulty={difficulty} numRolls={numRolls}
                 successesNeeded={successesNeeded} numDice={numDice}
                 stopRolling={stopRolling} />
-            <RollingBody doNewRoll={doNewRoll} lastResult={lastResult} history={history} />
+            <RollingBody doNewRoll={doNewRoll} lastResult={lastResult} history={history} removeLastRoll={removeLastRoll} />
         </View>
     )
 }
@@ -145,7 +150,11 @@ function RollingHeader({ difficulty, numRolls, successesNeeded, numDice, stopRol
     )
 }
 
-function RollingBody({ doNewRoll, lastResult, history }) {
+function RollingBody({ doNewRoll, lastResult, history, removeLastRoll }) {
+    const numRolls = 2;
+    const noMaxRolls = false;
+    const requiredSuccesses = 1;
+    
     let textStyleArray = [
         btnInv.textColor, btnInv.btnText,
         {
@@ -158,6 +167,40 @@ function RollingBody({ doNewRoll, lastResult, history }) {
         }
     ];
 
+    const successStyleAlert = {
+        marginTop: 10,
+        marginBottom: 5,
+        padding: 5,
+        borderRadius: 5,
+        borderColor: '#c3e6cb',
+        borderWidth: 1,
+        backgroundColor: '#d4edda'
+    }
+
+    const successTextStyle = {
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        color: '#155724',
+        fontSize: 25
+    }
+
+    const botchFailureStyleAlert = {
+        marginTop: 10,
+        marginBottom: 5,
+        padding: 5,
+        borderRadius: 5,
+        borderColor: 'rgb(245, 198, 203)',
+        borderWidth: 1,
+        backgroundColor: '#f8d7da'
+    }
+
+    const botchFailureTextStyle = {
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        color: '#721c24',
+        fontSize: 25
+    }
+
     const shouldAllowRoll = () => {
         return lastResult == null || !lastIsBotch();
     }
@@ -167,13 +210,23 @@ function RollingBody({ doNewRoll, lastResult, history }) {
         return lastResult.roll.isBotch();
     }
 
-    //console.log(lastResult);
-
     let header = null;
     if(lastIsBotch()) {
         header =
-            <View style={{marginTop: 5, marginBottom: 5, padding: 10, borderRadius: 5, borderColor: 'red', borderWidth: 2, backgroundColor: 'blue'}}>
-                <Text style={{textAlign: 'center', textAlignVertical: 'center', color: 'red', fontSize: 25}}>Botch</Text>
+            <View style={botchFailureStyleAlert}>
+                <Text style={botchFailureTextStyle}>BOTCH</Text>
+            </View>
+    } else if(lastResult != null && lastResult.running.totalSuccesses >= requiredSuccesses) {
+        // Success
+        header =
+            <View style={successStyleAlert}>
+                <Text style={successTextStyle}>SUCCESS</Text>
+            </View>
+    } else if(history.length >= numRolls) {
+        // Failure
+        header =
+            <View style={botchFailureStyleAlert}>
+                <Text style={botchFailureTextStyle}>FAILURE</Text>
             </View>
     } else {
         header = <View>
@@ -197,20 +250,20 @@ function RollingBody({ doNewRoll, lastResult, history }) {
 
     let body;
     if(history == null || history.length == 0) {
-        body = <View><Text>empty</Text></View>
+        body = <View></View>
     } else {
-        body = <RollingHistory history={history}/>
+        body = <RollingHistory history={history} removeLastRoll={removeLastRoll}/>
     }
 
     return (
-        <View style={{marginLeft: 10, marginRight: 10}}>
+        <View style={{marginLeft: 10, marginRight: 10, marginBottom: 5}}>
             {header}
             {body}
         </View>
     )
 }
 
-function RollingHistory({ history }) {
+function RollingHistory({ history, removeLastRoll }) {
     return (
         <View>
             <FlatList
@@ -220,29 +273,58 @@ function RollingHistory({ history }) {
                         roll={item.roll}
                         options={item.options}
                         running={item.running}
-                        index={index} />}
+                        index={index}
+                        rollCount={history.length}
+                        removeLastRoll={removeLastRoll} />}
                 keyExtractor={(item, index) => `history-item-${index}`}
             />
         </View>
     )
 }
 
-function RollingHistoryItem({roll, options, running, index}) {
+function RollingHistoryItem({roll, options, running, index, rollCount, removeLastRoll}) {
     const greyBoxCommon = {
         borderColor: MagePurple, borderWidth: 1, borderRadius: 3,
-        backgroundColor: 'lightgray',
+        backgroundColor: MageGrey,
         textAlignVertical: 'center', textAlign: 'center',
         marginTop: 5,
         paddingTop: 3, paddingBottom: 3
     }
+
+    let removeBtn;
+    if(index == 0) {
+        removeBtn = <TouchableOpacity
+            style={[btn.btn, styles.removeRollBtnOverrides]}
+            onPress={() => removeLastRoll()}
+            >
+            <Text style={[btn.textColor, btn.btnText, { textAlignVertical: 'center', fontSize: 12 }]}>Remove</Text>
+        </TouchableOpacity>
+    } else {
+        removeBtn = <View></View>
+    }
+
+    let rollNum = rollCount - index;
+
+    let boxHeader;
+    let boxHeaderTextStyles = [btnInv.textColor, btnInv.btnText];
+    if(roll.outcome == 'Botch'){
+        boxHeader = <View><Text style={boxHeaderTextStyles}>Botch | {running.totalSuccesses} Total Successes</Text></View>
+    } else if(roll.outcome == 'Failure') {
+        boxHeader = <View><Text style={boxHeaderTextStyles}>Failure | {running.totalSuccesses} Total Successes</Text></View>
+    } else {
+        boxHeader = <View><Text style={boxHeaderTextStyles}>{roll.finalSuccesses} {roll.finalSuccesses > 1 ? 'Successes' : 'Success'} | {running.totalSuccesses} Total</Text></View>
+    }
+
     return (
         <View style={{marginTop: 5, borderColor: 'gray', borderWidth: 1, borderRadius: 5}}>
-            <View style={{backgroundColor: 'lightgray', borderTopLeftRadius: 5, borderTopRightRadius: 5, borderColor: 'gray', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0, borderWidth: 1}}>
-                <Text>Top</Text>
+            <View style={{backgroundColor: 'lightgray', borderTopLeftRadius: 5, borderTopRightRadius: 5, borderColor: 'gray', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0, borderWidth: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 5, paddingLeft: 7, paddingRight: 7}}>
+                <Text style={[{color: MagePurple, fontWeight: 'bold'}]}>Roll {rollNum}</Text>
+                <View>{removeBtn}</View>
             </View>
             <View style={{paddingTop: 5, paddingBottom: 5}}>
-                <Text>{running.totalSuccesses} Total Successes</Text>
-                <Text>roll outcome {roll.outcome}</Text>
+                <View style={{justifyContent: 'center'}}>
+                    {boxHeader}
+                </View>
                 <Text style={[greyBoxCommon, btnInv.textColor, btnInv.btnText, {marginLeft: 20, marginRight: 20}]}>Willpower Spent: {running.totalWillpowerSpent}</Text>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginLeft: 20, marginRight: 20 }}>
@@ -307,5 +389,14 @@ const styles = StyleSheet.create({
         paddingRight: 8,
         height: 20,
         borderRadius: 3
+    },
+    removeRollBtnOverrides: {
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 0,
+        paddingBottom: 0,
+        height: 20,
+        borderRadius: 3
+        
     }
 })
